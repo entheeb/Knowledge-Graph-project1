@@ -1,0 +1,21 @@
+
+============================= JOB FEEDBACK =============================
+
+Job ID: 2828825
+Cluster: hk
+User/Group: st_st177261/hk-project-pai00011
+Account: hk-project-pai00011
+State: COMPLETED (exit code 0)
+Partition: accelerated
+Nodes: 1
+Cores per node: 4
+Nodelist: hkn0705
+CPU Utilized: 00:08:46
+CPU Efficiency: 22.91% of 00:38:16 core-walltime
+Job Wall-clock time: 00:09:34
+Starttime: Wed Dec 25 19:42:48 2024
+Endtime: Wed Dec 25 19:52:22 2024
+Memory Utilized: 1.11 GB
+Memory Efficiency: 4.62% of 24.00 GB
+Energy Consumed: 394447 Joule / 109.568611111111 Watthours
+Average node power draw: 687.189895470383 Watt

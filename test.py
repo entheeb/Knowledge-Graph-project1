@@ -26,7 +26,9 @@ def test(model_dir):
     # create dataset
     dataset_path = os.path.join(os.environ["DATA_PATH"], args.dataset)
     dataset = KGDataset(dataset_path, False)
+    dataset2 = KGDataset(dataset_path, False, easy_test=True)
     test_examples = dataset.get_examples("test")
+    test_examples2 = dataset2.get_examples("test")
     filters = dataset.get_filters()
 
     # load pretrained model weights
@@ -37,10 +39,12 @@ def test(model_dir):
 
     # eval
     test_metrics = avg_both(*model.compute_metrics(test_examples, filters))
-    return test_metrics
+    test_metrics2 = avg_both(*model.compute_metrics(test_examples2, filters))
+    return test_metrics, test_metrics2
 
 
 if __name__ == "__main__":
     args = parser.parse_args()
-    test_metrics = test(args.model_dir)
+    test_metrics, test_metrics2 = test(args.model_dir)
     print(format_metrics(test_metrics, split='test'))
+    print(format_metrics(test_metrics2, split='test'))
