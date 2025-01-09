@@ -10,7 +10,7 @@ import torch
 class KGDataset(object):
     """Knowledge Graph dataset class."""
 
-    def __init__(self, data_path, debug):
+    def __init__(self, data_path, debug, easy_test=False):
         """Creates KG dataset object for data loading.
 
         Args:
@@ -22,9 +22,23 @@ class KGDataset(object):
         self.debug = debug
         self.data = {}
         for split in ["train", "test", "valid"]:
-            file_path = os.path.join(self.data_path, split + ".pickle")
-            with open(file_path, "rb") as in_file:
-                self.data[split] = pkl.load(in_file)
+            if split == "test":
+                if easy_test:
+                    file_path = os.path.join(self.data_path, "newdata.pickle")
+                    with open(file_path, "rb") as in_file:
+                        temp_dict = pkl.load(in_file)
+                        self.data[split] = temp_dict["easy_test"]
+                else:
+                    file_path = os.path.join(self.data_path, "newdata.pickle")
+                    #file_path = os.path.join(self.data_path, split + ".pickle")
+                    with open(file_path, "rb") as in_file:
+                        temp_dict = pkl.load(in_file)
+                        self.data[split] = temp_dict["ood_test"]
+                        #self.data[split] = temp_dict
+            else:
+                file_path = os.path.join(self.data_path, split + ".pickle")
+                with open(file_path, "rb") as in_file:
+                    self.data[split] = pkl.load(in_file)
         filters_file = open(os.path.join(self.data_path, "to_skip.pickle"), "rb")
         self.to_skip = pkl.load(filters_file)
         filters_file.close()

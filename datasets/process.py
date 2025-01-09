@@ -77,6 +77,71 @@ def get_filters(examples, n_relations):
     return lhs_final, rhs_final
 
 
+def create_ood_and_easy_splits(train, valid, test):
+    """
+    Given original (train, valid, test) splits, create:
+      1) ood_test, easy_test
+      2) ood_valid, easy_valid
+    
+    Returns:
+      ood_test, easy_test, ood_valid, easy_valid 
+      (all as NumPy arrays)
+    """
+
+    # Build sets for train + valid (to filter test)
+    train_valid_hr = set()
+    train_valid_rt = set()
+
+    # Concatenate train & valid for test filtering
+    tv_combined = np.concatenate([train, valid], axis=0)
+    for (h, r, t) in tv_combined:
+        train_valid_hr.add((h, r))
+        train_valid_rt.add((r, t))
+
+    # Build sets for train only (to filter valid)
+    train_hr = set()
+    train_rt = set()
+
+    for (h, r, t) in train:
+        train_hr.add((h, r))
+        train_rt.add((r, t))
+
+    # Create OOD test & easy test
+    ood_test = []
+    easy_test = []
+
+    for (h, r, t) in test:
+        # OOD test if:
+        #   1) (h, r) not in train+valid
+        #   2) (r, t) not in train+valid
+        if (h, r) not in train_valid_hr and (r, t) not in train_valid_rt:
+            ood_test.append((h, r, t))
+        else:
+            easy_test.append((h, r, t))
+
+    # Create OOD valid & easy valid
+    ood_valid = []
+    easy_valid = []
+
+    for (h, r, t) in valid:
+        # OOD valid if:
+        #   1) (h, r) not in train
+        #   2) (r, t) not in train
+        if (h, r) not in train_hr and (r, t) not in train_rt:
+            ood_valid.append((h, r, t))
+        else:
+            easy_valid.append((h, r, t))
+
+    # Convert Python lists to NumPy arrays
+    ood_test = np.array(ood_test, dtype=np.int64)
+    easy_test = np.array(easy_test, dtype=np.int64)
+    ood_valid = np.array(ood_valid, dtype=np.int64)
+    easy_valid = np.array(easy_valid, dtype=np.int64)
+
+    return ood_test, easy_test, ood_valid, easy_valid
+
+        
+
 def process_dataset(path):
     """Map entities and relations to ids and saves corresponding pickle arrays.
 
@@ -104,9 +169,13 @@ if __name__ == "__main__":
     for dataset_name in os.listdir(data_path):
         dataset_path = os.path.join(data_path, dataset_name)
         dataset_examples, dataset_filters = process_dataset(dataset_path)
-        for dataset_split in ["train", "valid", "test"]:
-            save_path = os.path.join(dataset_path, dataset_split + ".pickle")
-            with open(save_path, "wb") as save_file:
-                pickle.dump(dataset_examples[dataset_split], save_file)
-        with open(os.path.join(dataset_path, "to_skip.pickle"), "wb") as save_file:
-            pickle.dump(dataset_filters, save_file)
+        ood_test, easy_test, ood_valid, easy_valid = create_ood_and_easy_splits(dataset_examples["train"], dataset_examples["valid"], dataset_examples["test"])
+        print(f"Dataset: {dataset_name}, OOD Test: {ood_test.shape}, Easy Test: {easy_test.shape}, "
+        f"OOD Valid: {ood_valid.shape}, Easy Valid: {easy_valid.shape}")
+        temp_dict = {"ood_test": ood_test, "easy_test": easy_test, "ood_valid": ood_valid, "easy_valid": easy_valid}
+        #for dataset_split in ["train", "valid", "test"]:
+        save_path = os.path.join(dataset_path, "newdata.pickle")
+        with open(save_path, "wb") as save_file:
+             pickle.dump(temp_dict, save_file)
+        #with open(os.path.join(dataset_path, "to_skip.pickle"), "wb") as save_file:
+            #pickle.dump(dataset_filters, save_file)

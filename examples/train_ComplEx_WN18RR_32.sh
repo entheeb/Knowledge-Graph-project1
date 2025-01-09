@@ -1,5 +1,5 @@
 #!/bin/bash
-cd .. 
+cd ..
 source set_env.sh
 python run.py \
             --dataset WN18RR \
