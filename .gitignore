@@ -2,3 +2,4 @@ data/
 logs/
 */__pycache__
 hyp_kg_env/
+/hkfs/work/workspace/scratch/st_st177261-Theeb/KGEmb/logs
