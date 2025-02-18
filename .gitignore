@@ -3,3 +3,7 @@ logs/
 */__pycache__
 hyp_kg_env/
 /hkfs/work/workspace/scratch/st_st177261-Theeb/KGEmb/logs
+/hkfs/work/workspace/scratch/st_st177261-Theeb/KGEmb/data
+/hkfs/work/workspace/scratch/st_st177261-Theeb/KGEmb/job_logs
+/hkfs/work/workspace/scratch/st_st177261-Theeb/KGEmb/random
+/hkfs/work/workspace/scratch/st_st177261-Theeb/KGEmb/temporal

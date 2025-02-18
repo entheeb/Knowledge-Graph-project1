@@ -1,0 +1,81 @@
+test.py:38: FutureWarning: You are using `torch.load` with `weights_only=False` (the current default value), which uses the default pickle module implicitly. It is possible to construct malicious pickle data which will execute arbitrary code during unpickling (See https://github.com/pytorch/pytorch/blob/main/SECURITY.md#untrusted-models for more details). In a future release, the default value for `weights_only` will be flipped to `True`. This limits the functions that could be executed during unpickling. Arbitrary objects will no longer be allowed to be loaded via this mode unless they are explicitly allowlisted by the user via `torch.serialization.add_safe_globals`. We recommend you start setting `weights_only=True` for any use case where you don't have full control of the loaded file. Please open an issue on GitHub for any issues related to this experimental feature.
+  model.load_state_dict(torch.load(os.path.join(model_dir, 'model.pt')))
+	 test MR: 1412.39 | MRR: 0.076 | H@1: 0.032 | H@3: 0.073 | H@10: 0.161
+Finshied with ood and now starting Easy test
+	 test MR: 653.16 | MRR: 0.127 | H@1: 0.064 | H@3: 0.132 | H@10: 0.253
+test.py:38: FutureWarning: You are using `torch.load` with `weights_only=False` (the current default value), which uses the default pickle module implicitly. It is possible to construct malicious pickle data which will execute arbitrary code during unpickling (See https://github.com/pytorch/pytorch/blob/main/SECURITY.md#untrusted-models for more details). In a future release, the default value for `weights_only` will be flipped to `True`. This limits the functions that could be executed during unpickling. Arbitrary objects will no longer be allowed to be loaded via this mode unless they are explicitly allowlisted by the user via `torch.serialization.add_safe_globals`. We recommend you start setting `weights_only=True` for any use case where you don't have full control of the loaded file. Please open an issue on GitHub for any issues related to this experimental feature.
+  model.load_state_dict(torch.load(os.path.join(model_dir, 'model.pt')))
+	 test MR: 1270.25 | MRR: 0.105 | H@1: 0.046 | H@3: 0.104 | H@10: 0.227
+Finshied with ood and now starting Easy test
+	 test MR: 578.12 | MRR: 0.142 | H@1: 0.068 | H@3: 0.153 | H@10: 0.293
+test.py:38: FutureWarning: You are using `torch.load` with `weights_only=False` (the current default value), which uses the default pickle module implicitly. It is possible to construct malicious pickle data which will execute arbitrary code during unpickling (See https://github.com/pytorch/pytorch/blob/main/SECURITY.md#untrusted-models for more details). In a future release, the default value for `weights_only` will be flipped to `True`. This limits the functions that could be executed during unpickling. Arbitrary objects will no longer be allowed to be loaded via this mode unless they are explicitly allowlisted by the user via `torch.serialization.add_safe_globals`. We recommend you start setting `weights_only=True` for any use case where you don't have full control of the loaded file. Please open an issue on GitHub for any issues related to this experimental feature.
+  model.load_state_dict(torch.load(os.path.join(model_dir, 'model.pt')))
+	 test MR: 1530.44 | MRR: 0.118 | H@1: 0.062 | H@3: 0.123 | H@10: 0.231
+Finshied with ood and now starting Easy test
+	 test MR: 810.58 | MRR: 0.128 | H@1: 0.067 | H@3: 0.135 | H@10: 0.250
+test.py:38: FutureWarning: You are using `torch.load` with `weights_only=False` (the current default value), which uses the default pickle module implicitly. It is possible to construct malicious pickle data which will execute arbitrary code during unpickling (See https://github.com/pytorch/pytorch/blob/main/SECURITY.md#untrusted-models for more details). In a future release, the default value for `weights_only` will be flipped to `True`. This limits the functions that could be executed during unpickling. Arbitrary objects will no longer be allowed to be loaded via this mode unless they are explicitly allowlisted by the user via `torch.serialization.add_safe_globals`. We recommend you start setting `weights_only=True` for any use case where you don't have full control of the loaded file. Please open an issue on GitHub for any issues related to this experimental feature.
+  model.load_state_dict(torch.load(os.path.join(model_dir, 'model.pt')))
+	 test MR: 1205.96 | MRR: 0.134 | H@1: 0.066 | H@3: 0.139 | H@10: 0.273
+Finshied with ood and now starting Easy test
+	 test MR: 638.09 | MRR: 0.118 | H@1: 0.051 | H@3: 0.122 | H@10: 0.257
+test.py:38: FutureWarning: You are using `torch.load` with `weights_only=False` (the current default value), which uses the default pickle module implicitly. It is possible to construct malicious pickle data which will execute arbitrary code during unpickling (See https://github.com/pytorch/pytorch/blob/main/SECURITY.md#untrusted-models for more details). In a future release, the default value for `weights_only` will be flipped to `True`. This limits the functions that could be executed during unpickling. Arbitrary objects will no longer be allowed to be loaded via this mode unless they are explicitly allowlisted by the user via `torch.serialization.add_safe_globals`. We recommend you start setting `weights_only=True` for any use case where you don't have full control of the loaded file. Please open an issue on GitHub for any issues related to this experimental feature.
+  model.load_state_dict(torch.load(os.path.join(model_dir, 'model.pt')))
+	 test MR: 1774.75 | MRR: 0.065 | H@1: 0.028 | H@3: 0.062 | H@10: 0.137
+Finshied with ood and now starting Easy test
+	 test MR: 780.08 | MRR: 0.110 | H@1: 0.053 | H@3: 0.113 | H@10: 0.222
+test.py:38: FutureWarning: You are using `torch.load` with `weights_only=False` (the current default value), which uses the default pickle module implicitly. It is possible to construct malicious pickle data which will execute arbitrary code during unpickling (See https://github.com/pytorch/pytorch/blob/main/SECURITY.md#untrusted-models for more details). In a future release, the default value for `weights_only` will be flipped to `True`. This limits the functions that could be executed during unpickling. Arbitrary objects will no longer be allowed to be loaded via this mode unless they are explicitly allowlisted by the user via `torch.serialization.add_safe_globals`. We recommend you start setting `weights_only=True` for any use case where you don't have full control of the loaded file. Please open an issue on GitHub for any issues related to this experimental feature.
+  model.load_state_dict(torch.load(os.path.join(model_dir, 'model.pt')))
+	 test MR: 1414.81 | MRR: 0.105 | H@1: 0.047 | H@3: 0.110 | H@10: 0.215
+Finshied with ood and now starting Easy test
+	 test MR: 641.69 | MRR: 0.141 | H@1: 0.069 | H@3: 0.151 | H@10: 0.288
+test.py:38: FutureWarning: You are using `torch.load` with `weights_only=False` (the current default value), which uses the default pickle module implicitly. It is possible to construct malicious pickle data which will execute arbitrary code during unpickling (See https://github.com/pytorch/pytorch/blob/main/SECURITY.md#untrusted-models for more details). In a future release, the default value for `weights_only` will be flipped to `True`. This limits the functions that could be executed during unpickling. Arbitrary objects will no longer be allowed to be loaded via this mode unless they are explicitly allowlisted by the user via `torch.serialization.add_safe_globals`. We recommend you start setting `weights_only=True` for any use case where you don't have full control of the loaded file. Please open an issue on GitHub for any issues related to this experimental feature.
+  model.load_state_dict(torch.load(os.path.join(model_dir, 'model.pt')))
+	 test MR: 685.30 | MRR: 0.150 | H@1: 0.083 | H@3: 0.157 | H@10: 0.284
+Finshied with ood and now starting Easy test
+	 test MR: 315.25 | MRR: 0.182 | H@1: 0.094 | H@3: 0.201 | H@10: 0.359
+test.py:38: FutureWarning: You are using `torch.load` with `weights_only=False` (the current default value), which uses the default pickle module implicitly. It is possible to construct malicious pickle data which will execute arbitrary code during unpickling (See https://github.com/pytorch/pytorch/blob/main/SECURITY.md#untrusted-models for more details). In a future release, the default value for `weights_only` will be flipped to `True`. This limits the functions that could be executed during unpickling. Arbitrary objects will no longer be allowed to be loaded via this mode unless they are explicitly allowlisted by the user via `torch.serialization.add_safe_globals`. We recommend you start setting `weights_only=True` for any use case where you don't have full control of the loaded file. Please open an issue on GitHub for any issues related to this experimental feature.
+  model.load_state_dict(torch.load(os.path.join(model_dir, 'model.pt')))
+	 test MR: 600.57 | MRR: 0.194 | H@1: 0.112 | H@3: 0.208 | H@10: 0.368
+Finshied with ood and now starting Easy test
+	 test MR: 250.85 | MRR: 0.221 | H@1: 0.113 | H@3: 0.255 | H@10: 0.442
+test.py:38: FutureWarning: You are using `torch.load` with `weights_only=False` (the current default value), which uses the default pickle module implicitly. It is possible to construct malicious pickle data which will execute arbitrary code during unpickling (See https://github.com/pytorch/pytorch/blob/main/SECURITY.md#untrusted-models for more details). In a future release, the default value for `weights_only` will be flipped to `True`. This limits the functions that could be executed during unpickling. Arbitrary objects will no longer be allowed to be loaded via this mode unless they are explicitly allowlisted by the user via `torch.serialization.add_safe_globals`. We recommend you start setting `weights_only=True` for any use case where you don't have full control of the loaded file. Please open an issue on GitHub for any issues related to this experimental feature.
+  model.load_state_dict(torch.load(os.path.join(model_dir, 'model.pt')))
+	 test MR: 768.65 | MRR: 0.188 | H@1: 0.110 | H@3: 0.210 | H@10: 0.340
+Finshied with ood and now starting Easy test
+	 test MR: 396.85 | MRR: 0.208 | H@1: 0.124 | H@3: 0.227 | H@10: 0.380
+test.py:38: FutureWarning: You are using `torch.load` with `weights_only=False` (the current default value), which uses the default pickle module implicitly. It is possible to construct malicious pickle data which will execute arbitrary code during unpickling (See https://github.com/pytorch/pytorch/blob/main/SECURITY.md#untrusted-models for more details). In a future release, the default value for `weights_only` will be flipped to `True`. This limits the functions that could be executed during unpickling. Arbitrary objects will no longer be allowed to be loaded via this mode unless they are explicitly allowlisted by the user via `torch.serialization.add_safe_globals`. We recommend you start setting `weights_only=True` for any use case where you don't have full control of the loaded file. Please open an issue on GitHub for any issues related to this experimental feature.
+  model.load_state_dict(torch.load(os.path.join(model_dir, 'model.pt')))
+	 test MR: 521.32 | MRR: 0.221 | H@1: 0.133 | H@3: 0.234 | H@10: 0.417
+Finshied with ood and now starting Easy test
+	 test MR: 281.54 | MRR: 0.193 | H@1: 0.096 | H@3: 0.216 | H@10: 0.395
+test.py:38: FutureWarning: You are using `torch.load` with `weights_only=False` (the current default value), which uses the default pickle module implicitly. It is possible to construct malicious pickle data which will execute arbitrary code during unpickling (See https://github.com/pytorch/pytorch/blob/main/SECURITY.md#untrusted-models for more details). In a future release, the default value for `weights_only` will be flipped to `True`. This limits the functions that could be executed during unpickling. Arbitrary objects will no longer be allowed to be loaded via this mode unless they are explicitly allowlisted by the user via `torch.serialization.add_safe_globals`. We recommend you start setting `weights_only=True` for any use case where you don't have full control of the loaded file. Please open an issue on GitHub for any issues related to this experimental feature.
+  model.load_state_dict(torch.load(os.path.join(model_dir, 'model.pt')))
+	 test MR: 905.17 | MRR: 0.152 | H@1: 0.094 | H@3: 0.155 | H@10: 0.267
+Finshied with ood and now starting Easy test
+	 test MR: 353.97 | MRR: 0.175 | H@1: 0.095 | H@3: 0.190 | H@10: 0.340
+test.py:38: FutureWarning: You are using `torch.load` with `weights_only=False` (the current default value), which uses the default pickle module implicitly. It is possible to construct malicious pickle data which will execute arbitrary code during unpickling (See https://github.com/pytorch/pytorch/blob/main/SECURITY.md#untrusted-models for more details). In a future release, the default value for `weights_only` will be flipped to `True`. This limits the functions that could be executed during unpickling. Arbitrary objects will no longer be allowed to be loaded via this mode unless they are explicitly allowlisted by the user via `torch.serialization.add_safe_globals`. We recommend you start setting `weights_only=True` for any use case where you don't have full control of the loaded file. Please open an issue on GitHub for any issues related to this experimental feature.
+  model.load_state_dict(torch.load(os.path.join(model_dir, 'model.pt')))
+	 test MR: 900.47 | MRR: 0.216 | H@1: 0.148 | H@3: 0.230 | H@10: 0.352
+Finshied with ood and now starting Easy test
+	 test MR: 342.87 | MRR: 0.304 | H@1: 0.207 | H@3: 0.336 | H@10: 0.498
+
+============================= JOB FEEDBACK =============================
+
+Job ID: 2943230
+Cluster: hk
+User/Group: st_st177261/hk-project-pai00011
+Account: hk-project-pai00011
+State: COMPLETED (exit code 0)
+Partition: accelerated
+Nodes: 1
+Cores per node: 4
+Nodelist: hkn0524
+CPU Utilized: 00:02:34
+CPU Efficiency: 19.15% of 00:13:24 core-walltime
+Job Wall-clock time: 00:03:21
+Starttime: Tue Feb 18 17:17:39 2025
+Endtime: Tue Feb 18 17:21:00 2025
+Memory Utilized: 1.18 GB
+Memory Efficiency: 23.57% of 5.00 GB
+Energy Consumed: 153738 Joule / 42.705 Watthours
+Average node power draw: 764.865671641791 Watt

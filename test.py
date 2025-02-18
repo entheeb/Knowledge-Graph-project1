@@ -47,4 +47,5 @@ if __name__ == "__main__":
     args = parser.parse_args()
     test_metrics, test_metrics2 = test(args.model_dir)
     print(format_metrics(test_metrics, split='test'))
+    print("Finshied with ood and now starting Easy test")
     print(format_metrics(test_metrics2, split='test'))
