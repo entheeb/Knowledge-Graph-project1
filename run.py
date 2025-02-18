@@ -19,7 +19,7 @@ parser = argparse.ArgumentParser(
     description="Knowledge Graph Embedding"
 )
 parser.add_argument(
-    "--dataset", default="WN18RR", choices=["FB15K", "WN", "WN18RR", "FB237", "YAGO3-10"],
+    "--dataset", default="WN18RR", choices=["FB15K", "WN", "WN18RR", "FB237", "YAGO3-10", "ICEWS18R", "ICEWS18T"],
     help="Knowledge Graph dataset"
 )
 parser.add_argument(

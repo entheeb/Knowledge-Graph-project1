@@ -173,9 +173,13 @@ if __name__ == "__main__":
         print(f"Dataset: {dataset_name}, OOD Test: {ood_test.shape}, Easy Test: {easy_test.shape}, "
         f"OOD Valid: {ood_valid.shape}, Easy Valid: {easy_valid.shape}")
         temp_dict = {"ood_test": ood_test, "easy_test": easy_test, "ood_valid": ood_valid, "easy_valid": easy_valid}
-        #for dataset_split in ["train", "valid", "test"]:
-        save_path = os.path.join(dataset_path, "newdata.pickle")
-        with open(save_path, "wb") as save_file:
-             pickle.dump(temp_dict, save_file)
-        #with open(os.path.join(dataset_path, "to_skip.pickle"), "wb") as save_file:
-            #pickle.dump(dataset_filters, save_file)
+        if dataset_name == "ICEWS18R" or dataset_name == "ICEWS18T":
+            for dataset_split in ["train", "valid", "test"]:
+                save_path = os.path.join(dataset_path, f"{dataset_split}.pickle")
+                with open(save_path, "wb") as save_file:
+                    pickle.dump(dataset_examples[dataset_split], save_file)
+            save_path = os.path.join(dataset_path, "newdata.pickle")
+            with open(save_path, "wb") as save_file:
+                pickle.dump(temp_dict, save_file)
+            with open(os.path.join(dataset_path, "to_skip.pickle"), "wb") as save_file:
+                pickle.dump(dataset_filters, save_file)
