@@ -1,0 +1,31 @@
+2025-03-10 13:39:50,308 INFO     Saving logs in: /hkfs/work/workspace/scratch/st_st177261-Theeb/KGEmb/logs/03_10/FB237/unique_relation_normalized_z_13_39_50
+2025-03-10 13:39:50,775 INFO     Number of entities: 14541, number of total relation x2: 474
+2025-03-10 13:39:50,775 INFO     	 (14541, 474, 14541)
+2025-03-10 13:39:50,782 INFO     Number of relations: 237
+2025-03-10 13:39:50,983 INFO     numbers of entity_relations: 14513
+new_method.py:67: UserWarning: To copy construct from a tensor, it is recommended to use sourceTensor.clone().detach() or sourceTensor.clone().detach().requires_grad_(True), rather than torch.tensor(sourceTensor).
+  hr_pair = torch.tensor(queries[:, :2], dtype=torch.long)
+new_method.py:88: UserWarning: To copy construct from a tensor, it is recommended to use sourceTensor.clone().detach() or sourceTensor.clone().detach().requires_grad_(True), rather than torch.tensor(sourceTensor).
+  tail = torch.tensor(queries[:, 2], dtype=torch.long)
+2025-03-10 14:35:27,723 INFO     	 test MR: 2751.79 | MRR: 0.046 | H@1: 0.018 | H@3: 0.041 | H@10: 0.097
+
+============================= JOB FEEDBACK =============================
+
+Job ID: 2976144
+Cluster: hk
+User/Group: st_st177261/hk-project-pai00011
+Account: hk-project-pai00011
+State: COMPLETED (exit code 0)
+Partition: accelerated
+Nodes: 1
+Cores per node: 4
+Nodelist: hkn0711
+CPU Utilized: 00:55:32
+CPU Efficiency: 24.73% of 03:44:32 core-walltime
+Job Wall-clock time: 00:56:08
+Starttime: Mon Mar 10 13:39:21 2025
+Endtime: Mon Mar 10 14:35:29 2025
+Memory Utilized: 867.50 MB
+Memory Efficiency: 10.59% of 8.00 GB
+Energy Consumed: 3194896 Joule / 887.471111111111 Watthours
+Average node power draw: 948.603325415677 Watt

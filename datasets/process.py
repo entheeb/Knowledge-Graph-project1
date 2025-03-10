@@ -116,7 +116,7 @@ def create_ood_and_easy_splits(train, valid, test):
         #   2) (r, t) not in train+valid
         if (h, r) not in train_valid_hr and (r, t) not in train_valid_rt:
             ood_test.append((h, r, t))
-        else:
+        if (h, r) in train_valid_hr or (r, t) in train_valid_rt:
             easy_test.append((h, r, t))
 
     # Create OOD valid & easy valid
@@ -129,7 +129,7 @@ def create_ood_and_easy_splits(train, valid, test):
         #   2) (r, t) not in train
         if (h, r) not in train_hr and (r, t) not in train_rt:
             ood_valid.append((h, r, t))
-        else:
+        if (h, r) in train_hr or (r, t) in train_rt:
             easy_valid.append((h, r, t))
 
     # Convert Python lists to NumPy arrays
@@ -169,17 +169,18 @@ if __name__ == "__main__":
     for dataset_name in os.listdir(data_path):
         dataset_path = os.path.join(data_path, dataset_name)
         dataset_examples, dataset_filters = process_dataset(dataset_path)
-        ood_test, easy_test, ood_valid, easy_valid = create_ood_and_easy_splits(dataset_examples["train"], dataset_examples["valid"], dataset_examples["test"])
+        ood_test, easy_test, ood_valid, easy_valid = create_ood_and_easy_splits(dataset_examples["train"], dataset_examples["valid"],
+                                                                                 dataset_examples["test"])
         print(f"Dataset: {dataset_name}, OOD Test: {ood_test.shape}, Easy Test: {easy_test.shape}, "
         f"OOD Valid: {ood_valid.shape}, Easy Valid: {easy_valid.shape}")
         temp_dict = {"ood_test": ood_test, "easy_test": easy_test, "ood_valid": ood_valid, "easy_valid": easy_valid}
-        if dataset_name == "ICEWS18R" or dataset_name == "ICEWS18T":
-            for dataset_split in ["train", "valid", "test"]:
-                save_path = os.path.join(dataset_path, f"{dataset_split}.pickle")
-                with open(save_path, "wb") as save_file:
-                    pickle.dump(dataset_examples[dataset_split], save_file)
+        #if dataset_name == "ICEWS18R" or dataset_name == "ICEWS18T":
+        for dataset_split in ["test"]:
+            #save_path = os.path.join(dataset_path, f"{dataset_split}.pickle")
+            #with open(save_path, "wb") as save_file:
+                #pickle.dump(dataset_examples[dataset_split], save_file)
             save_path = os.path.join(dataset_path, "newdata.pickle")
             with open(save_path, "wb") as save_file:
                 pickle.dump(temp_dict, save_file)
-            with open(os.path.join(dataset_path, "to_skip.pickle"), "wb") as save_file:
-                pickle.dump(dataset_filters, save_file)
+            #with open(os.path.join(dataset_path, "to_skip.pickle"), "wb") as save_file:
+                #pickle.dump(dataset_filters, save_file)
