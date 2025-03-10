@@ -10,7 +10,7 @@ import torch
 class KGDataset(object):
     """Knowledge Graph dataset class."""
 
-    def __init__(self, data_path, debug, easy_test=False):
+    def __init__(self, data_path, debug, easy_test=True):
         """Creates KG dataset object for data loading.
 
         Args:
@@ -57,13 +57,13 @@ class KGDataset(object):
             examples: torch.LongTensor containing KG triples in a split
         """
         examples = self.data[split]
-        if split == "train":
+        '''if split == "train":
             copy = np.copy(examples)
             tmp = np.copy(copy[:, 0])
             copy[:, 0] = copy[:, 2]
             copy[:, 2] = tmp
             copy[:, 1] += self.n_predicates // 2
-            examples = np.vstack((examples, copy))
+            examples = np.vstack((examples, copy))'''
         if rel_idx >= 0:
             examples = examples[examples[:, 1] == rel_idx]
         if self.debug:
