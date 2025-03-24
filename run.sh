@@ -1,8 +1,8 @@
 #!/bin/bash
 
 #SBATCH --ntasks=1
-#SBATCH --job-name=new_method        # Job name
-#SBATCH --output=new_methodztotal_lhs.log        # Standard output log
+#SBATCH --job-name=new_dataset1        # Job name
+#SBATCH --output=job_logs/old_dataset_ICEWS18R.log        # Standard output log
 #SBATCH --time=1-00:00:00                   # Time limit
 #SBATCH --partition=accelerated             # Partition (GPU node)
 #SBATCH --gres=gpu:1                        # Number of GPUs required
@@ -14,6 +14,21 @@
 source set_env.sh
 
 # Run the Python script with specified arguments
-python new_method.py \
-            --dataset FB237
-
+python run.py \
+            --dataset ICEWS18R \
+            --model RotE \
+            --rank 500 \
+            --regularizer N3 \
+            --reg 0.0 \
+            --optimizer Adam \
+            --max_epochs 200 \
+            --patience 15 \
+            --valid 5 \
+            --batch_size 100 \
+            --neg_sample_size 250 \
+            --init_size 0.001 \
+            --learning_rate 0.001 \
+            --gamma 0.0 \
+            --bias learn \
+            --dtype double \
+            --double_neg 

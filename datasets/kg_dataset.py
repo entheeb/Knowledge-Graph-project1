@@ -10,7 +10,7 @@ import torch
 class KGDataset(object):
     """Knowledge Graph dataset class."""
 
-    def __init__(self, data_path, debug, easy_test=True):
+    def __init__(self, data_path, debug, easy_test=False):
         """Creates KG dataset object for data loading.
 
         Args:
@@ -24,17 +24,17 @@ class KGDataset(object):
         for split in ["train", "test", "valid"]:
             if split == "test":
                 if easy_test:
-                    file_path = os.path.join(self.data_path, "newdata.pickle")
+                    file_path = os.path.join(self.data_path, "newdata_ood.pickle")
                     with open(file_path, "rb") as in_file:
                         temp_dict = pkl.load(in_file)
                         self.data[split] = temp_dict["easy_test"]
                 else:
-                    file_path = os.path.join(self.data_path, "newdata.pickle")
+                    file_path = os.path.join(self.data_path, "test.pickle")
                     #file_path = os.path.join(self.data_path, split + ".pickle")
                     with open(file_path, "rb") as in_file:
                         temp_dict = pkl.load(in_file)
-                        self.data[split] = temp_dict["ood_test"]
-                        #self.data[split] = temp_dict
+                        #self.data[split] = temp_dict["ood_test"]
+                        self.data[split] = temp_dict
             else:
                 file_path = os.path.join(self.data_path, split + ".pickle")
                 with open(file_path, "rb") as in_file:
@@ -57,13 +57,13 @@ class KGDataset(object):
             examples: torch.LongTensor containing KG triples in a split
         """
         examples = self.data[split]
-        '''if split == "train":
+        if split == "train":
             copy = np.copy(examples)
             tmp = np.copy(copy[:, 0])
             copy[:, 0] = copy[:, 2]
             copy[:, 2] = tmp
             copy[:, 1] += self.n_predicates // 2
-            examples = np.vstack((examples, copy))'''
+            examples = np.vstack((examples, copy))
         if rel_idx >= 0:
             examples = examples[examples[:, 1] == rel_idx]
         if self.debug:

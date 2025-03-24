@@ -7,6 +7,9 @@ import os
 
 import torch
 import torch.optim
+import numpy as np
+
+print(torch.cuda.is_available())
 
 import models
 import optimizers.regularizers as regularizers
@@ -83,6 +86,11 @@ parser.add_argument(
     "--multi_c", action="store_true", help="Multiple curvatures per relation"
 )
 
+def set_seed(seed: int):
+    """Set seed for reproducibility across random, numpy and torch (CPU & CUDA)."""
+    np.random.seed(seed)
+    torch.manual_seed(seed)
+
 
 def train(args):
     save_dir = get_savedir(args.model, args.dataset)
@@ -107,6 +115,7 @@ def train(args):
     dataset_path = os.path.join(os.environ["DATA_PATH"], args.dataset)
     dataset = KGDataset(dataset_path, args.debug)
     args.sizes = dataset.get_shape()
+    print(f"max entity number in train: {args.sizes}")
 
     # load data
     logging.info("\t " + str(dataset.get_shape()))
@@ -188,4 +197,5 @@ def train(args):
 
 
 if __name__ == "__main__":
+    set_seed(42)
     train(parser.parse_args())

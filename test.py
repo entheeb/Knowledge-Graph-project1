@@ -3,7 +3,7 @@
 import argparse
 import json
 import os
-
+import numpy as np
 import torch
 
 import models
@@ -15,6 +15,11 @@ parser.add_argument(
     '--model_dir',
     help="Model path"
 )
+
+def set_seed(seed: int):
+    """Set seed for reproducibility across random, numpy and torch (CPU & CUDA)."""
+    np.random.seed(seed)
+    torch.manual_seed(seed)
 
 
 def test(model_dir):
@@ -28,7 +33,9 @@ def test(model_dir):
     dataset = KGDataset(dataset_path, False)
     dataset2 = KGDataset(dataset_path, False, easy_test=True)
     test_examples = dataset.get_examples("test")
+    print(f"ood_test shape: {test_examples.shape}")
     test_examples2 = dataset2.get_examples("test")
+    print(f"easy_test shape: {test_examples2.shape}")
     filters = dataset.get_filters()
 
     # load pretrained model weights
@@ -44,6 +51,7 @@ def test(model_dir):
 
 
 if __name__ == "__main__":
+    set_seed(42)
     args = parser.parse_args()
     test_metrics, test_metrics2 = test(args.model_dir)
     print(format_metrics(test_metrics, split='test'))
