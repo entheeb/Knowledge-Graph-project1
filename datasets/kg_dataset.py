@@ -29,12 +29,12 @@ class KGDataset(object):
                         temp_dict = pkl.load(in_file)
                         self.data[split] = temp_dict["easy_test"]
                 else:
-                    file_path = os.path.join(self.data_path, "test.pickle")
+                    file_path = os.path.join(self.data_path, "newdata_ood.pickle")
                     #file_path = os.path.join(self.data_path, split + ".pickle")
                     with open(file_path, "rb") as in_file:
                         temp_dict = pkl.load(in_file)
-                        #self.data[split] = temp_dict["ood_test"]
-                        self.data[split] = temp_dict
+                        self.data[split] = temp_dict["ood_test"]
+                        #self.data[split] = temp_dict
             else:
                 file_path = os.path.join(self.data_path, split + ".pickle")
                 with open(file_path, "rb") as in_file:
