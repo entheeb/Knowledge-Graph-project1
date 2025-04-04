@@ -1,6 +1,7 @@
 """Knowledge Graph dataset pre-processing functions."""
 
 import collections
+from collections import defaultdict
 import os
 import pickle
 
@@ -233,30 +234,82 @@ def process_dataset(path):
     return examples, filters
 
 
+def balance_splits_by_relation(split1, split2):
+    """
+    Balances two splits so that each relation appears the same number of times in both splits.
+    Keeps the minimum count of each relation across the two splits.
+
+    :param split1: NumPy array of shape (num_triples, 3)
+    :param split2: NumPy array of shape (num_triples, 3)
+    :return: balanced_split1, balanced_split2 (both NumPy arrays)
+    """
+    # Group triples by relation
+    rel_to_triples_1 = defaultdict(list)
+    rel_to_triples_2 = defaultdict(list)
+
+    for h, r, t in split1:
+        rel_to_triples_1[r].append((h, r, t))
+
+    for h, r, t in split2:
+        rel_to_triples_2[r].append((h, r, t))
+
+    # Collect all relations present in either split
+    all_relations = set(rel_to_triples_1.keys()) | set(rel_to_triples_2.keys())
+
+    # Balance the splits by taking the minimum number of triples per relation
+    balanced_split1 = []
+    balanced_split2 = []
+
+    for r in all_relations:
+        triples1 = rel_to_triples_1.get(r, [])
+        triples2 = rel_to_triples_2.get(r, [])
+        k = min(len(triples1), len(triples2))
+
+        if k > 0:
+            balanced_split1.extend(triples1[:k])
+            balanced_split2.extend(triples2[:k])
+
+    return np.array(balanced_split1), np.array(balanced_split2)
+
+
 if __name__ == "__main__":
     data_path = os.environ["DATA_PATH"]
     for dataset_name in os.listdir(data_path):
         dataset_path = os.path.join(data_path, dataset_name)
-        if dataset_name in ["FB237", "WN18RR", "ICEWS18R"]:
-            train_path = os.path.join(dataset_path, f"train_50_easy_ood_{dataset_name}.pickle")
+        if dataset_name in ["NELL-995-h50"]:
+            '''train_path = os.path.join(dataset_path, f"train_50_easy_ood_{dataset_name}.pickle")
             test_path = os.path.join(dataset_path, f"test_50_easy_ood_{dataset_name}.pickle")
             valid_path = os.path.join(dataset_path, f"valid_50_easy_ood_{dataset_name}.pickle")
 
             train = load_pickle(train_path)
             test = load_pickle(test_path)
             valid = load_pickle(valid_path)
+            #test_ood = test["ood_test"]
+            #test_easy = test["easy_test"]
+            #test_ood_balanced, test_easy_balanced = balance_splits_by_relation(test_ood, test_easy)
+            #test_balanced = {"ood_test": test_ood_balanced, "easy_test": test_easy_balanced}
         #dataset_examples, dataset_filters = process_dataset(dataset_path)
             ood_test, easy_test, ood_valid, easy_valid = create_50_ood_and_easy_splits(train, valid, test)
             print(f"Dataset: {dataset_name}, OOD Test: {ood_test.shape}, Easy Test: {easy_test.shape}, "
                   f"OOD Valid: {ood_valid.shape}, Easy Valid: {easy_valid.shape}")
             temp_dict = {"ood_test": ood_test, "easy_test": easy_test, "ood_valid": ood_valid, "easy_valid": easy_valid}
-        #if dataset_name == "ICEWS18R" or dataset_name == "ICEWS18T":
-        #for dataset_split in ["test", "train", "valid"]:
-            #save_path = os.path.join(dataset_path, f"{dataset_split}.pickle")
-            #with open(save_path, "wb") as save_file:
-                #pickle.dump(dataset_examples[dataset_split], save_file)
-            save_path = os.path.join(dataset_path, "newdata_ood.pickle")
-            with open(save_path, "wb") as save_file:
+            with open(os.path.join(dataset_path, "newdata_ood.pickle"), "wb") as save_file:
                 pickle.dump(temp_dict, save_file)
-            #with open(os.path.join(dataset_path, "to_skip.pickle"), "wb") as save_file:
-                #pickle.dump(dataset_filters, save_file)
+
+            ood_test_balanced, easy_test_balanced = balance_splits_by_relation(ood_test, easy_test)
+            print(f"Dataset: {dataset_name}, OOD Test Balanced: {ood_test_balanced.shape}, "
+                  f"Easy Test Balanced: {easy_test_balanced.shape}")
+            with open(os.path.join(dataset_path, "newdata_ood_balanced.pickle"), "wb") as save_file:
+                pickle.dump({"ood_test": ood_test_balanced, "easy_test": easy_test_balanced}, save_file)'''
+
+            dataset_examples, dataset_filters = process_dataset(dataset_path)
+        #if dataset_name == "ICEWS18R" or dataset_name == "ICEWS18T":
+            #for dataset_split in ["test", "train", "valid"]:
+              #save_path = os.path.join(dataset_path, f"{dataset_split}_50_easy_ood_NELL-995-h50.pickle")
+              #with open(save_path, "wb") as save_file:
+                #pickle.dump(dataset_examples[dataset_split], save_file)
+            #save_path = os.path.join(dataset_path, "newdata_ood_balanced.pickle")
+            #with open(save_path, "wb") as save_file:
+                #pickle.dump(test_balanced, save_file)
+            with open(os.path.join(dataset_path, "to_skip.pickle"), "wb") as save_file:
+                pickle.dump(dataset_filters, save_file)

@@ -24,12 +24,12 @@ class KGDataset(object):
         for split in ["train", "test", "valid"]:
             if split == "test":
                 if easy_test:
-                    file_path = os.path.join(self.data_path, "newdata_ood.pickle")
+                    file_path = os.path.join(self.data_path, "newdata_ood_balanced.pickle")
                     with open(file_path, "rb") as in_file:
                         temp_dict = pkl.load(in_file)
                         self.data[split] = temp_dict["easy_test"]
                 else:
-                    file_path = os.path.join(self.data_path, "newdata_ood.pickle")
+                    file_path = os.path.join(self.data_path, "newdata_ood_balanced.pickle")
                     #file_path = os.path.join(self.data_path, split + ".pickle")
                     with open(file_path, "rb") as in_file:
                         temp_dict = pkl.load(in_file)
